@@ -49,7 +49,6 @@ class ChatSession:
         try:
             reply = ""
             response_total_tokens = 0
-            messages_for_chunk = []
 
             with self.client.chat.completions.create(
                 model=MODEL_NAME,
@@ -67,7 +66,6 @@ class ChatSession:
                         self.total_tokens += chunk.usage.total_tokens
 
                     if delta and delta.content:
-                        messages_for_chunk.append(delta.content)
                         console.print(delta.content, end="")
                         reply += delta.content
 
@@ -112,7 +110,7 @@ def main():
     parser = ArgumentParser(description="CLI Chat")
 
     parser.add_argument(
-        "-prompt",
+        "--prompt",
         type=str,
         default="You are a helpful assistant.",
     )
@@ -141,9 +139,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-
-    except KeyboardInterrupt:
-        console.print("\n[red]Session interrupted.[/red]")
 
     except Exception as e:
         console.print(f"[bold red]Fatal error:[/bold red] {e}")
