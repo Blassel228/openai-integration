@@ -16,13 +16,13 @@ import tiktoken
 from wikipedia import summary
 
 MANDATORY_TOOL_INSTRUCTIONS = (
-    "\n\nCRITICAL SYSTEM INSTRUCTION: "
-    "You have access to specific tools defined in your schema. "
-    "1. For ANY mathematical calculation, you MUST use the 'calculate' tool"
-    "2. For ANY request to explain a topic, you MUST use the 'explain' tool. "
-    "3. For ANY request to search information, you MUST use the 'search_wikipedia' tool. "
-    "4. For ANY request to create quizzes, you MUST use the 'generate_quiz' tool to create prompt. "
-    "Do not attempt to answer these requests directly without calling the appropriate tool first."
+    "\n\nCRITICAL SYSTEM INSTRUCTION: \n"
+    "You have access to specific tools defined in your schema. \n"
+    "1. For ANY mathematical calculation, you MUST use the 'calculate' tool \n"
+    "2. For ANY request to explain a topic, you MUST use the 'explain' tool. \n"
+    "3. For ANY request to search information, you MUST use the 'search_wikipedia' tool. \n"
+    "4. For ANY request to create quizzes, you MUST use the 'generate_quiz' tool to create prompt. \n"
+    "Do not attempt to answer these requests directly without calling the appropriate tool first. \n"
 )
 
 tools: list[FunctionToolParam] = [
@@ -93,7 +93,7 @@ tools: list[FunctionToolParam] = [
 ]
 
 console = Console()
-
+load_dotenv()
 
 class ChatSession:
     def __init__(self, system_prompt: str) -> None:
@@ -128,7 +128,6 @@ class ChatSession:
 
     @staticmethod
     def _init_client() -> OpenAI:
-        load_dotenv()
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ValueError("OPENAI_API_KEY not found in .env")
@@ -136,25 +135,16 @@ class ChatSession:
 
     @staticmethod
     def _init_model_name() -> str:
-        load_dotenv()
         model_name = os.getenv("MODEL_NAME")
         if not model_name:
             raise ValueError("MODEL_NAME not found in .env")
         return model_name
 
-    def call_function(self, name: str, args: dict) -> Any:
+    def call_function(self, name: str, args: dict) -> str:
         console.print(f"\n[dim]Calling function: {name} with args: {args}[/dim]")
 
-        if name == "calculate":
-            result = self.calculate(**args)
-        elif name == "explain":
-            result = self.explain(**args)
-        elif name == "generate_quiz":
-            result = self.generate_quiz(**args)
-        elif name == "search_wikipedia":
-            result = self.search_wikipedia(**args)
-        else:
-            result = f"Unknown function: {name}"
+        func = getattr(self, name)
+        result = func(**args) if func else f"Unknown function: {name}"
 
         self.function_logs.append({
             "function_name": name,
@@ -171,7 +161,7 @@ class ChatSession:
     def log_message(self, text: str, source: Literal["user", "assistant"]) -> None:
         tokens = self.count_tokens(text)
         self.context.append({"role": source, "content": text})
-        role_name = "User" if source == "user" else "Assistant"
+        role_name = source.capitalize()
         console.print(f"[dim][{role_name} tokens: {tokens}][/dim]")
 
     def make_response(self) -> None:
@@ -190,7 +180,11 @@ class ChatSession:
                     continue
 
                 name = tool_call.name
-                args = json.loads(tool_call.arguments)
+                try:
+                    args = json.loads(tool_call.arguments)
+                except json.JSONDecodeError as e:
+                    console.print(f"[red]Bad tool arguments: {e}[/red]")
+                    continue
                 result = self.call_function(name, args)
 
                 self.context.append({
@@ -225,8 +219,6 @@ class ChatSession:
             console.print(f"[bold red]OpenAI API Error: {e}[/bold red]")
         except Exception as e:
             console.print(f"[bold red]Error:[/bold red] {e}")
-            import traceback
-            traceback.print_exc()
 
     def save_log(self) -> None:
         log_dir = Path(__file__).parent / "logs"
