@@ -1,0 +1,11 @@
+Newton's First Law states that an object at rest stays at rest, and an object in motion stays in motion with the same speed and direction, unless acted upon by an unbalanced force. This is also called the law of inertia.
+
+Newton's Second Law defines the relationship between force, mass, and acceleration: F = ma. The greater the mass of an object, the more force is needed to accelerate it.
+
+Newton's Third Law states that for every action, there is an equal and opposite reaction. This principle explains how rockets propel themselves in the vacuum of space.
+
+Einstein's Theory of General Relativity describes gravity not as a force, but as a curvature of spacetime caused by mass and energy. Massive objects like stars and planets warp the fabric of space around them.
+
+The speed of light in a vacuum is approximately 299,792,458 meters per second. According to relativity, nothing with mass can travel faster than this universal speed limit.
+
+Quantum mechanics describes the behavior of matter and energy at the smallest scales. At this level, particles can exist in multiple states simultaneously (superposition) and can be entangled across vast distances.
