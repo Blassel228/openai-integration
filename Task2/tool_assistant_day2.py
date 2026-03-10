@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Literal, Any
+from typing import Literal
 
 from dotenv import load_dotenv
 from openai import OpenAI
