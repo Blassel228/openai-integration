@@ -17,3 +17,29 @@ Neptune is the windiest planet, with supersonic winds reaching up to 2,100 km/h.
 Pluto was classified as the ninth planet from its discovery in 1930 until 2006. The International Astronomical Union reclassified it as a "dwarf planet" because it has not cleared its orbital neighborhood of other objects. Pluto has five known moons, with Charon being so large that the pair are sometimes considered a binary system.
 
 The Sun contains 99.86% of the total mass of the Solar System. It is a G-type main-sequence star, about 4.6 billion years old. The Sun's energy comes from nuclear fusion in its core, where hydrogen atoms combine to form helium. This energy takes thousands of years to travel from the core to the surface, then just 8 minutes to reach Earth.
+
+The Space Age began in 1957 with the launch of Sputnik 1 by the Soviet Union. This was the first artificial satellite to orbit Earth, marking the start of human exploration beyond our planet.
+
+Yuri Gagarin became the first human in space on April 12, 1961, aboard Vostok 1. His flight lasted 108 minutes and proved that humans could survive and function in microgravity.
+
+The Apollo program by NASA achieved the first human landing on the Moon in 1969. Apollo 11 astronauts Neil Armstrong and Buzz Aldrin walked on the lunar surface while Michael Collins orbited above.
+
+The International Space Station (ISS) has been continuously occupied since November 2000. It serves as a microgravity laboratory where crew members conduct experiments in biology, physics, astronomy, and meteorology.
+
+The James Webb Space Telescope, launched in 2021, is the most powerful space telescope ever built. It observes the universe in infrared light, allowing scientists to see the first galaxies formed after the Big Bang.
+
+Mars rovers like Curiosity and Perseverance explore the Martian surface searching for signs of ancient life. They analyze soil, rock, and atmospheric samples, sending data back to Earth for analysis.
+
+Private companies like SpaceX and Blue Origin are developing reusable rockets to reduce the cost of space access. SpaceX's Falcon 9 rocket has successfully landed and reflown its first stage over 20 times.
+
+Newton's First Law states that an object at rest stays at rest, and an object in motion stays in motion with the same speed and direction, unless acted upon by an unbalanced force. This is also called the law of inertia.
+
+Newton's Second Law defines the relationship between force, mass, and acceleration: F = ma. The greater the mass of an object, the more force is needed to accelerate it.
+
+Newton's Third Law states that for every action, there is an equal and opposite reaction. This principle explains how rockets propel themselves in the vacuum of space.
+
+Einstein's Theory of General Relativity describes gravity not as a force, but as a curvature of spacetime caused by mass and energy. Massive objects like stars and planets warp the fabric of space around them.
+
+The speed of light in a vacuum is approximately 299,792,458 meters per second. According to relativity, nothing with mass can travel faster than this universal speed limit.
+
+Quantum mechanics describes the behavior of matter and energy at the smallest scales. At this level, particles can exist in multiple states simultaneously (superposition) and can be entangled across vast distances.
