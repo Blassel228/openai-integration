@@ -2,6 +2,7 @@ import os
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import Literal
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -13,17 +14,18 @@ import tiktoken
 
 console = Console()
 
-MODEL_NAME = "gpt-4o"
-
 
 class ChatSession:
-    def __init__(self, system_prompt: str):
-        self.messages = [{"role": "system", "content": system_prompt}]
+    def __init__(self, system_prompt: str) -> None:
+        self.context = [{"role": "system", "content": system_prompt}]
         self.total_tokens = 0
         self.client = self._init_client()
-        self.encoder = tiktoken.get_encoding("cl100k_base")
+        self.model_name = os.getenv("MODEL_NAME")
+        if not self.model_name:
+            raise ValueError("MODEL_NAME not found in .env")
+        self.encoder = tiktoken.encoding_for_model(self.model_name)
 
-    def _init_client(self):
+    def _init_client(self) -> OpenAI:
         load_dotenv()
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
@@ -33,50 +35,40 @@ class ChatSession:
     def count_tokens(self, text: str) -> int:
         return len(self.encoder.encode(text))
 
-    def add_user_message(self, text: str):
+    def log_message(self, text: str, source: Literal["user", "assistant"]) -> None:
         tokens = self.count_tokens(text)
-        self.messages.append({"role": "user", "content": text})
-        console.print(f"[dim][User tokens: {tokens}][/dim]")
-
-    def add_assistant_message(self, text: str):
-        tokens = self.count_tokens(text)
-        self.messages.append({"role": "assistant", "content": text})
+        self.context.append({"role": source, "content": text})
         console.print(f"[dim][Assistant tokens: {tokens}][/dim]")
 
-    def stream_response(self):
+    def stream_response(self) -> None:
         console.print("[yellow]Assistant is typing...[/yellow]\n")
 
         try:
             reply = ""
             response_total_tokens = 0
-            messages_for_chunk = []
 
-            with self.client.chat.completions.create(
-                model=MODEL_NAME,
-                messages=self.messages,
-                stream_options={"include_usage": True},
-                stream=True
+            with self.client.responses.create(
+                model=self.model_name,
+                input=self.context,
+                stream=True,
             ) as stream:
-                for chunk in stream:
-                    delta = None
-                    if chunk.choices:
-                        delta = chunk.choices[0].delta
+                for event in stream:
 
-                    if chunk.usage:
-                        response_total_tokens += chunk.usage.total_tokens
-                        self.total_tokens += chunk.usage.total_tokens
+                    if event.type == "response.output_text.delta":
+                        console.print(event.delta, end="")
+                        reply += event.delta
 
-                    if delta and delta.content:
-                        messages_for_chunk.append(delta.content)
-                        console.print(delta.content, end="")
-                        reply += delta.content
+                    elif event.type == "response.completed":
+                        if event.response.usage:
+                            response_total_tokens = event.response.usage.total_tokens
+                            self.total_tokens += response_total_tokens
+
 
             console.print()
-            self.add_assistant_message(reply)
+            self.log_message(reply, "assistant")
             console.print(
                 f"[dim][Tokens used: {response_total_tokens} | Total so far: {self.total_tokens}][/dim]"
             )
-            return reply
 
         except RateLimitError:
             console.print("[bold red]Rate limit exceeded (429). Please wait and try again.[/bold red]")
@@ -87,9 +79,8 @@ class ChatSession:
         except Exception as e:
             console.print(f"[bold red]Error:[/bold red] {e}")
 
-        return ""
 
-    def save_log(self):
+    def save_log(self) -> None:
         log_dir = Path("logs")
         log_dir.mkdir(exist_ok=True)
 
@@ -99,7 +90,7 @@ class ChatSession:
         data = {
             "timestamp": datetime.now().isoformat(),
             "total_tokens": self.total_tokens,
-            "messages": self.messages
+            "context": self.context
         }
 
         with open(path, "w", encoding="utf-8") as f:
@@ -108,11 +99,11 @@ class ChatSession:
         console.print(f"\n[green]Conversation saved to {path}[/green]")
 
 
-def main():
+def main() -> None:
     parser = ArgumentParser(description="CLI Chat")
 
     parser.add_argument(
-        "-prompt",
+        "--prompt",
         type=str,
         default="You are a helpful assistant.",
     )
@@ -130,7 +121,7 @@ def main():
                 session.save_log()
                 break
 
-            session.add_user_message(user_input)
+            session.log_message(user_input, "user")
             session.stream_response()
 
         except KeyboardInterrupt:
@@ -141,9 +132,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-
-    except KeyboardInterrupt:
-        console.print("\n[red]Session interrupted.[/red]")
 
     except Exception as e:
         console.print(f"[bold red]Fatal error:[/bold red] {e}")
