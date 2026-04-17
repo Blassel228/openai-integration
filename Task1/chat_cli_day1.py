@@ -53,6 +53,7 @@ class ChatSession:
                 stream=True,
             ) as stream:
                 for event in stream:
+
                     if event.type == "response.output_text.delta":
                         console.print(event.delta, end="")
                         reply += event.delta
@@ -61,6 +62,7 @@ class ChatSession:
                         if event.response.usage:
                             response_total_tokens = event.response.usage.total_tokens
                             self.total_tokens += response_total_tokens
+
 
             console.print()
             self.log_message(reply, "assistant")
@@ -91,7 +93,7 @@ class ChatSession:
         data = {
             "timestamp": datetime.now().isoformat(),
             "total_tokens": self.total_tokens,
-            "context": self.context,
+            "context": self.context
         }
 
         with open(path, "w", encoding="utf-8") as f:
