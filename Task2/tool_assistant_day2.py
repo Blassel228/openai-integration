@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 from typing import Literal
+from simpleeval import simple_eval
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -18,7 +19,7 @@ from wikipedia import summary
 MANDATORY_TOOL_INSTRUCTIONS = (
     "\n\nCRITICAL SYSTEM INSTRUCTION: \n"
     "You have access to specific tools defined in your schema. \n"
-    "1. For ANY mathematical calculation, you MUST use the 'calculate' tool \n"
+    "1. For ANY mathematical calculation, you MUST use the 'calculate' tool and try not to show user result in float\n"
     "2. For ANY request to explain a topic, you MUST use the 'explain' tool. \n"
     "3. For ANY request to search information, you MUST use the 'search_wikipedia' tool. \n"
     "4. For ANY request to create quizzes, you MUST use the 'generate_quiz' tool to create prompt. \n"
@@ -96,11 +97,12 @@ console = Console()
 load_dotenv()
 
 class ChatSession:
-    def __init__(self, system_prompt: str) -> None:
+    def __init__(self, system_prompt: str = "You are a helpful assistant.") -> None:
         full_system_prompt = f"{system_prompt}{MANDATORY_TOOL_INSTRUCTIONS}"
 
         self.context: list[dict[str, str] | list[ResponseOutputItem]] = [
-            {"role": "system", "content": full_system_prompt}]
+            {"role": "system", "content": full_system_prompt}
+        ]
         self.total_tokens = 0
         self.client = self._init_client()
         self.model_name = self._init_model_name()
@@ -110,7 +112,7 @@ class ChatSession:
 
     @staticmethod
     def calculate(expression: str) -> str:
-        return str(eval(expression))
+        return str(simple_eval(expression))
 
     @staticmethod
     def explain(topic: str) -> str:
