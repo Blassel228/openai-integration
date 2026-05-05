@@ -1,0 +1,45 @@
+Mercury is the smallest planet in our Solar System and the closest to the Sun. It completes one orbit in just 88 Earth days, making it the fastest planet. Despite being close to the Sun, Mercury has extreme temperature swings: up to 430°C during the day and -180°C at night. It has no substantial atmosphere to retain heat.
+
+Venus is often called Earth's "sister planet" due to similar size and mass. However, its surface is a hellish landscape with temperatures around 465°C. Venus has a thick atmosphere made mostly of carbon dioxide, creating a runaway greenhouse effect. It rotates in the opposite direction to most planets.
+
+Earth is the only known planet to support life. It orbits the Sun at an average distance of 150 million kilometers, taking 365.25 days to complete one revolution. Earth's atmosphere contains 21% oxygen, and about 71% of its surface is covered by water. It has one natural satellite: the Moon.
+
+Mars is known as the Red Planet because of iron oxide (rust) on its surface. It has the largest volcano in the Solar System, Olympus Mons, and a canyon system called Valles Marineris. Mars has two small moons: Phobos and Deimos. Scientists believe liquid water once flowed on its surface.
+
+Jupiter is the largest planet in our Solar System, with a mass greater than all other planets combined. It is a gas giant composed mostly of hydrogen and helium. Jupiter has at least 95 known moons, including the four large Galilean moons: Io, Europa, Ganymede, and Callisto. Its famous Great Red Spot is a storm larger than Earth.
+
+Saturn is famous for its spectacular ring system, made of ice particles, rock, and dust. It is the least dense planet—less dense than water, meaning it would float if placed in a large enough ocean. Saturn has 146 confirmed moons, with Titan being the largest and the only moon in the Solar System with a substantial atmosphere.
+
+Uranus is an ice giant with a blue-green color caused by methane in its atmosphere. It rotates on its side, with an axial tilt of about 98 degrees, likely due to a massive collision in its past. Uranus takes 84 Earth years to orbit the Sun and has 27 known moons.
+
+Neptune is the windiest planet, with supersonic winds reaching up to 2,100 km/h. It is an ice giant similar to Uranus but more massive. Neptune was the first planet discovered through mathematical predictions rather than direct observation. It has 14 known moons, with Triton being the largest and geologically active.
+
+Pluto was classified as the ninth planet from its discovery in 1930 until 2006. The International Astronomical Union reclassified it as a "dwarf planet" because it has not cleared its orbital neighborhood of other objects. Pluto has five known moons, with Charon being so large that the pair are sometimes considered a binary system.
+
+The Sun contains 99.86% of the total mass of the Solar System. It is a G-type main-sequence star, about 4.6 billion years old. The Sun's energy comes from nuclear fusion in its core, where hydrogen atoms combine to form helium. This energy takes thousands of years to travel from the core to the surface, then just 8 minutes to reach Earth.
+
+The Space Age began in 1957 with the launch of Sputnik 1 by the Soviet Union. This was the first artificial satellite to orbit Earth, marking the start of human exploration beyond our planet.
+
+Yuri Gagarin became the first human in space on April 12, 1961, aboard Vostok 1. His flight lasted 108 minutes and proved that humans could survive and function in microgravity.
+
+The Apollo program by NASA achieved the first human landing on the Moon in 1969. Apollo 11 astronauts Neil Armstrong and Buzz Aldrin walked on the lunar surface while Michael Collins orbited above.
+
+The International Space Station (ISS) has been continuously occupied since November 2000. It serves as a microgravity laboratory where crew members conduct experiments in biology, physics, astronomy, and meteorology.
+
+The James Webb Space Telescope, launched in 2021, is the most powerful space telescope ever built. It observes the universe in infrared light, allowing scientists to see the first galaxies formed after the Big Bang.
+
+Mars rovers like Curiosity and Perseverance explore the Martian surface searching for signs of ancient life. They analyze soil, rock, and atmospheric samples, sending data back to Earth for analysis.
+
+Private companies like SpaceX and Blue Origin are developing reusable rockets to reduce the cost of space access. SpaceX's Falcon 9 rocket has successfully landed and reflown its first stage over 20 times.
+
+Newton's First Law states that an object at rest stays at rest, and an object in motion stays in motion with the same speed and direction, unless acted upon by an unbalanced force. This is also called the law of inertia.
+
+Newton's Second Law defines the relationship between force, mass, and acceleration: F = ma. The greater the mass of an object, the more force is needed to accelerate it.
+
+Newton's Third Law states that for every action, there is an equal and opposite reaction. This principle explains how rockets propel themselves in the vacuum of space.
+
+Einstein's Theory of General Relativity describes gravity not as a force, but as a curvature of spacetime caused by mass and energy. Massive objects like stars and planets warp the fabric of space around them.
+
+The speed of light in a vacuum is approximately 299,792,458 meters per second. According to relativity, nothing with mass can travel faster than this universal speed limit.
+
+Quantum mechanics describes the behavior of matter and energy at the smallest scales. At this level, particles can exist in multiple states simultaneously (superposition) and can be entangled across vast distances.

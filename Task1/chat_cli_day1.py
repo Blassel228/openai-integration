@@ -16,7 +16,7 @@ console = Console()
 
 
 class ChatSession:
-    def __init__(self, system_prompt: str) -> None:
+    def __init__(self, system_prompt: str = "You are a helpful assistant") -> None:
         self.context = [{"role": "system", "content": system_prompt}]
         self.total_tokens = 0
         self.client = self._init_client()
