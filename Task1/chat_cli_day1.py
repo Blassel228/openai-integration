@@ -71,17 +71,20 @@ class ChatSession:
             )
 
         except RateLimitError:
-            console.print("[bold red]Rate limit exceeded (429). Please wait and try again.[/bold red]")
+            console.print(
+                "[bold red]Rate limit exceeded (429). Please wait and try again.[/bold red]"
+            )
         except Timeout:
-            console.print("[bold red]Request timed out. Check your network connection.[/bold red]")
+            console.print(
+                "[bold red]Request timed out. Check your network connection.[/bold red]"
+            )
         except APIError as e:
             console.print(f"[bold red]OpenAI API Error: {e}[/bold red]")
         except Exception as e:
             console.print(f"[bold red]Error:[/bold red] {e}")
 
-
     def save_log(self) -> None:
-        log_dir = Path("logs")
+        log_dir = Path(__file__).parent / "logs"
         log_dir.mkdir(exist_ok=True)
 
         filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S.json")
